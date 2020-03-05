@@ -1,1 +1,11 @@
+/*imports*/
 @import "topBar.css";
+@import "center.css";
+
+/*variables*/
+:root
+{
+    --font-family: Arial, Helvetica, sans-serif;
+    --font-size: 1vw;
+    --font-color: #cccccc;
+}

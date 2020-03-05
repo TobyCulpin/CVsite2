@@ -1,0 +1,42 @@
+/*variables*/
+:root
+{
+    --center-scale: 8;
+    --center-text-scale: 0.2;
+}
+
+/*parent container*/
+.center
+{
+    position: absolute;
+    left: 50vw;
+    top: 50vh;
+
+    width: calc(var(--center-scale) * (1vw + 1vh));
+    margin-left: calc(var(--center-scale) * -0.5 * (1vw + 1vh));
+    height: calc(var(--center-scale) * (1vw + 1vh));
+    margin-top: calc(var(--center-scale) * -0.5 * (1vw + 1vh));
+
+    text-align: center;
+}
+
+/*draws circle*/
+.center .circle
+{
+    background-color: #58804e;
+    border-radius: 50%; /*rounds corners of square to become circle*/
+    width: inherit;
+    height: inherit;
+}
+
+/*draws text*/
+.center .text
+{
+    font-family: var(--font-family);
+    font-size: calc(var(--center-scale) * var(--center-text-scale) * (1vw + 1vh));
+    color: var(--font-color);
+
+    /*the -0.6 constamt here MUST be changed if the --center-text-scale var is changed*/
+    margin-top: calc(var(--center-scale) * -0.6 * (1vw + 1vh));
+    
+}
