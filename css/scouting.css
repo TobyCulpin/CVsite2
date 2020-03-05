@@ -1,4 +1,9 @@
-#projectsTab
+:root
+{
+    --sections: 3;
+}
+
+#scoutingTab
 {
     background-color: rgb(77, 52, 21);
     color: white;
@@ -6,5 +11,5 @@
 
 .center .circle
 {
-    background-color: #ff6308;
+    background-color: #70009c;
 }

@@ -1,0 +1,10 @@
+:root
+{
+    --sections: 6;
+}
+
+#workTab
+{
+    background-color: rgb(77, 52, 21);
+    color: white;
+}

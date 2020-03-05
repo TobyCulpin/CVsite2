@@ -1,7 +1,7 @@
 /*variables*/
 :root
 {
-    --center-scale: 8;
+    --center-scale: 0.08;
     --center-text-scale: 0.2;
 }
 
@@ -9,13 +9,13 @@
 .center
 {
     position: absolute;
-    left: 50vw;
-    top: 50vh;
+    right: calc(var(--width) * 0.5);
+    bottom: calc(var(--height) * 0.5);
 
-    width: calc(var(--center-scale) * (1vw + 1vh));
-    margin-left: calc(var(--center-scale) * -0.5 * (1vw + 1vh));
-    height: calc(var(--center-scale) * (1vw + 1vh));
-    margin-top: calc(var(--center-scale) * -0.5 * (1vw + 1vh));
+    width: calc(var(--center-scale) * (var(--width) + var(--height)));
+    margin-right: calc(var(--center-scale) * -0.5 * (var(--width) + var(--height)));
+    height: calc(var(--center-scale) * (var(--width) + var(--height)));
+    margin-bottom: calc(var(--center-scale) * -0.5 * (var(--width) + var(--height)));
 
     text-align: center;
 }
@@ -33,10 +33,15 @@
 .center .text
 {
     font-family: var(--font-family);
-    font-size: calc(var(--center-scale) * var(--center-text-scale) * (1vw + 1vh));
+    font-size: calc(var(--center-scale) * var(--center-text-scale) * (var(--width) + var(--height)));
     color: var(--font-color);
 
     /*the -0.6 constamt here MUST be changed if the --center-text-scale var is changed*/
-    margin-top: calc(var(--center-scale) * -0.6 * (1vw + 1vh));
-    
+    margin-top: calc(var(--center-scale) * -0.6 * (var(--width) + var(--height)));
+
+    /*makes the text non-selectable*/
+    -webkit-user-select: none;  /*Safari*/        
+    -moz-user-select: none;     /*Firefox*/
+    -ms-user-select: none;      /*IE10+/Edge*/
+    user-select: none;          /*Standard*/
 }

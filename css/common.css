@@ -1,11 +1,17 @@
 /*imports*/
-@import "topBar.css";
-@import "center.css";
+@import url(sideBar.css);
+@import url(center.css);
+@import url(line.css);
 
 /*variables*/
 :root
 {
+    --PI: 3.14159265358979;
+
     --font-family: Arial, Helvetica, sans-serif;
     --font-size: 1vw;
     --font-color: #cccccc;
+    
+    --width: calc(100vw - var(--sideBar-width));
+    --height: 100vh;
 }

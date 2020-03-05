@@ -1,0 +1,46 @@
+:root
+{
+    --sideBar-width: 10vw;
+}
+
+.sideBar
+{
+    position: absolute;
+    left: 0;
+    width: var(--sideBar-width);
+    top: 0;
+    height: 100vh;
+    background-color: #f1f1f1;
+}
+
+.sideBar ul
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: inherit;
+    background-color: #f1f1f1;
+}
+  
+.sideBar ul li a
+{
+    display: block;
+    color: #000;
+    padding: 10px calc(var(--width) * 0.01);
+    text-decoration: none;
+
+    font-family: var(--font-family);
+    font-size: calc(0.02 * var(--width));
+
+    -webkit-user-select: none;  /*Safari*/        
+    -moz-user-select: none;     /*Firefox*/
+    -ms-user-select: none;      /*IE10+/Edge*/
+    user-select: none;          /*Standard*/
+}
+  
+/* Change the link color on hover */
+.sideBar ul li a:hover
+{
+    background-color: #555;
+    color: white;
+}
