@@ -1,6 +1,7 @@
 :root
 {
     --sections: 3;
+    --line-width: 10px;
 }
 
 #scoutingTab
