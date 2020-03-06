@@ -6,13 +6,13 @@
 .lines
 {
     position: fixed;
-    right: calc(var(--width) * 0.5);
+    right: calc((var(--width) * 0.5) - (var(--line-width) / 2));
     bottom: calc(-4.5 * var(--height));
-    width: 2px;
-    color: black;
+    width: var(--line-width);
     height: calc(var(--height) * 10);
     background-color: black;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, #000000 100%);
+
+    z-index: 10;
 }
 
 .line1 { transform: rotate(calc(0 * var(--angle))) translateY(calc(var(--height) * -5)); }

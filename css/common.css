@@ -15,3 +15,15 @@
     --width: calc(100vw - var(--sideBar-width));
     --height: 100vh;
 }
+
+.bgImage
+{
+    position: fixed;
+    margin: 0;
+    height: var(--height);
+    width: var(--width);
+    right: 0;
+    bottom: 0;
+    
+    z-index: 5;
+}

@@ -1,10 +1,19 @@
 :root
 {
     --sections: 6;
+    --line-width: 20px;
 }
 
 #workTab
 {
     background-color: rgb(77, 52, 21);
     color: white;
+}
+
+.lines
+{
+    background: linear-gradient(to right,    rgba(255, 255, 255, 0),
+                                             rgba(255, 255, 255, 1) 40%, 
+                                             rgba(255, 255, 255, 1) 60%, 
+                                             rgba(255, 255, 255, 0));
 }

@@ -18,6 +18,8 @@
     margin-bottom: calc(var(--center-scale) * -0.5 * (var(--width) + var(--height)));
 
     text-align: center;
+
+    z-index: 11;
 }
 
 /*draws circle*/
