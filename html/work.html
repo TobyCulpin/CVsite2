@@ -19,15 +19,17 @@
     <div include-html="sideBar.html"></div>
 
     <!--background image-->
-    <img class="bgImage" src="../media/images/placeholder2.jpg"></img>
+    <img class="bgImage" src="../media/images/blackBackground1.jpg"></img>
 
 
-    <!--lines-->
-    <div class="lines line1"></div>
-    <div class="lines line2"></div>
-    <div class="lines line3"></div>
-    <div class="lines line4"></div>
-    <div class="lines line5"></div>
+    <!--line images     Must be same amount of tags as lines-->
+    <img class="lineImg" src="../media/images/ph1.jpg">
+    <img class="lineImg" src="../media/images/ph2.jpg">
+    <img class="lineImg" src="../media/images/ph3.jpg">
+    <img class="lineImg" src="../media/images/ph4.jpg">
+    <img class="lineImg" src="../media/images/ph5.jpg">
+    <img class="lineImg" src="../media/images/ph6.jpg">
+    <img class="lineImg" src="../media/images/ph7.jpg">
 
     <!--main content-->
 
@@ -38,22 +40,11 @@
         <div class="text">Work</div>
     </div>
 
-    <defs>
-        <pattern id="img1" patternUnits="userSpaceOnUse" width="500" height="210">
-            <image xlink:href="../media/images/placeholder.png" x="0" y="0" width="500" height="210" />
-        </pattern>
-    </defs>
-
     <!--testing polygons-->
-    <svg id="star" height="210" width="500">
-        <polygon points="100,10 40,198 190,78 10,78 160,198">
-            fill="url(#img1)"
-        </polygon>
-
-    </svg>
     
 </body>
 <!--java script-->
 <script src="../js/common.js"></script>
 <script src="../js/includeHTML.js"></script>
+<script src="../js/lines.js"></script>
 </html>

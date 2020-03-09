@@ -1,34 +1,12 @@
 :root
 {
-    --sections: 5;
+    --sections: 7;
     --line-width: 20px;
 }
 
+/*color and background color for the side bar*/
 #workTab
 {
     background-color: rgb(77, 52, 21);
     color: white;
-}
-
-.lines
-{
-    background: linear-gradient(to right,    rgba(255, 255, 255, 0),
-                                             rgba(255, 255, 255, 1) 40%, 
-                                             rgba(255, 255, 255, 1) 60%, 
-                                             rgba(255, 255, 255, 0));
-}
-
-#star
-{
-    position: absolute;
-    top: 30vh;
-    left: 30vw;
-    
-
-    z-index: 1000;
-}
-
-#star polygon
-{
-    background-image: url("../media/images/placeholder.png");
 }

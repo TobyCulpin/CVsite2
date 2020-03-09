@@ -1,0 +1,27 @@
+:root
+{
+    --angle: calc(2rad * var(--PI) / var(--sections));
+    --imgWidth: 0;
+}
+
+.lines
+{
+    position: fixed;
+    right: calc((var(--width) * 0.5) - (var(--line-width) / 2));
+    bottom: calc(-4.5 * var(--height));
+    width: var(--line-width);
+    height: calc(var(--height) * 10);
+    background: linear-gradient(to right,    rgba(255, 255, 255, 0),
+                                             rgba(255, 255, 255, 1) 40%,
+                                             rgba(255, 255, 255, 1) 60%,
+                                             rgba(255, 255, 255, 0));
+    
+    z-index: 10;
+}
+
+.lineImg
+{
+    position: absolute;
+    
+    z-index: 9;
+}

@@ -1,6 +1,7 @@
 :root
 {
-    --sideBar-width: 10vw;
+    /*the MUST be no space between the : and the value due to js length value*/
+    --sideBar-width:10vw;
 }
 
 .sideBar
