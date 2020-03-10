@@ -1,0 +1,26 @@
+//Theme selection for the nav bar---------------------------------------------------------------
+
+const themeMap =
+{
+    dark: 'light',
+    light: 'solar',
+    solar: 'dark'
+};
+  
+const theme = localStorage.getItem('theme');
+const bodyClass = document.body.classList;
+theme && bodyClass.add(theme) || (bodyClass.add("dark"), localStorage.setItem('theme', "dark"));
+  
+function toggleTheme()
+{
+    const current = localStorage.getItem('theme');
+    const next = themeMap[current];
+
+    bodyClass.replace(current, next);
+    localStorage.setItem('theme', next);
+}
+
+alert(document.getElementById('themeButton'));
+document.getElementById('themeButton').onclick = toggleTheme;
+
+//----------------------------------------------------------------------------------------------
