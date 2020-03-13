@@ -1,6 +1,7 @@
-window.addEventListener("resize", resize);
+//calls images() on window resize event, which updates the images
+window.addEventListener("resize", images);
 
-
+//variable is a string
 function setCssVar(variable, value)
 {
     document.documentElement.style.setProperty(variable, value);
@@ -15,9 +16,10 @@ function borderIntersect(angle, wPix, hPix)
 {
     //critical angles pointing to the corners
     let alpha = Math.atan(wPix/hPix);
-    let ca0 = alpha;
-    let ca1 = Math.PI - alpha;
-    let ca2 = Math.PI + alpha;
+
+    let ca0 = 0             + alpha;
+    let ca1 = Math.PI       - alpha;
+    let ca2 = Math.PI       + alpha;
     let ca3 = (2 * Math.PI) - alpha;
 
     if ((angle >= 0) && (angle < ca0))//top border
@@ -43,10 +45,8 @@ function borderIntersect(angle, wPix, hPix)
 }
 
 //Creates the line elements and sets the rotationa and position
-function lines(screenInfo)
+function lines()
 {
-    height = parseInt(getCssVar(`--height`).slice(0, -2));
-
     for (i = 0; i < parseInt(getCssVar(`--sections`)); i++)
     {
         //creates line elements
@@ -56,7 +56,7 @@ function lines(screenInfo)
         line.classList.add(`lines`);
 
         let angle = ((i * 2 * Math.PI) / parseInt(getCssVar(`--sections`))).toString() + `rad`;
-        let distance = (screenInfo.height * -5).toString() + `vh`;
+        let distance = `-500vh`;
         line.style.transform = `rotate(${angle}) translateY(${distance})`;
 
         //adds element to body
@@ -66,30 +66,30 @@ function lines(screenInfo)
 
 //returns width and height based on the line sectors
 //width and height are preformatted as strings with vw and vh
-function getImgSize(lineInfo, screenInfo)
+function getImgSize(lineInfo)
 {
-    var imgWidth = (screenInfo.width/2).toString() + `vw`;//Defaults
-    var imgHeight = (screenInfo.height/2).toString() + `vh`;
+    let imgWidth = `50vw`;//Defaults
+    let imgHeight = `50vh`;
 
     if (lineInfo.l1Sector == lineInfo.l2Sector)//checks if the containing lines are in the same sector
     {
         //set image to be a quater of the screen
-        imgWidth = (screenInfo.width/2).toString() + `vw`;
-        imgHeight = (screenInfo.height/2).toString() + `vh`;
+        imgWidth = `50vw`;
+        imgHeight = `50vh`;
     }
     else if ((lineInfo.l1Sector == 0 && lineInfo.l2Sector == 1) ||    //for tall image on left
-             (lineInfo.l1Sector == 0 && lineInfo.l2Sector == 1) ||    //for tall image on left where there are only 2 sections
+             (lineInfo.l1Sector == 0 && lineInfo.l2Sector == 2) ||    //for tall image on left where there are only 2 sections
              (lineInfo.l1Sector == 2 && lineInfo.l2Sector == 3))      //for tall image on right
     {
         //set image to be a half of the screen (tall and thin)
-        imgWidth = (screenInfo.width/2).toString() + `vw`;
-        imgHeight = (screenInfo.height).toString() + `vh`;
+        imgWidth = `50vw`;
+        imgHeight = `100vh`;
     }
     else if ((lineInfo.l1Sector == 1 && lineInfo.l2Sector == 2))  //for wide image on bottom
     {                                           //no wide image on top is possible as the first line is always in the middle at the top
         //set image to be half of the screen (wide and short)
-        imgWidth = (screenInfo.width).toString() + `vw`;
-        imgHeight = (screenInfo.height/2).toString() + `vh`;
+        imgWidth = `100vw`;
+        imgHeight = `50vh`;
     }
 
     return{
@@ -100,16 +100,16 @@ function getImgSize(lineInfo, screenInfo)
 
 //returns the right and bottom based on line sectors
 //right and bottom are preformatted as strings with vw and vh
-function getImgPositions(lineInfo, screenInfo)
+function getImgPositions(lineInfo)
 {
     //Defaults
-    var imgRight = `0vw`;
-    var imgBottom = `0vh`;
+    let imgRight = `0vw`;
+    let imgBottom = `0vh`;
 
     if (lineInfo.l1Sector == 0 && lineInfo.l2Sector == 0)         //in sector 1
     {
         imgRight = `0vw`;
-        imgBottom = (screenInfo.height/2).toString() + `vh`;
+        imgBottom = `50vh`;
     }
     else if ((lineInfo.l1Sector == 0 && lineInfo.l2Sector == 1) ||//in sector 1 and 2
              (lineInfo.l1Sector == 0 && lineInfo.l2Sector == 2) ||//in sector 1 and 2     for when there are exactly 2 sections
@@ -122,13 +122,13 @@ function getImgPositions(lineInfo, screenInfo)
     else if ((lineInfo.l1Sector == 2 && lineInfo.l2Sector == 2) ||//in sector 3
              (lineInfo.l1Sector == 2 && lineInfo.l2Sector == 3))  //in sector 3 and 4
     {
-        imgRight = (screenInfo.width/2).toString() + `vw`;
+        imgRight = `50vw`;
         imgBottom = `0vh`;
     }
     else if (lineInfo.l1Sector == 3 && lineInfo.l2Sector == 3)    //in sector 4
     {
-        imgRight = (screenInfo.width/2).toString() + `vw`;
-        imgBottom = (screenInfo.height/2).toString() + `vh`;
+        imgRight = `50vw`;
+        imgBottom = `50vh`;
     }
 
     return{
@@ -337,9 +337,9 @@ function getImgShape(lineInfo, screenInfo)
 
 
 //sets the size, position, and shape for the line images
-function images(screenInfo)
+function images()
 {
-
+    screenInfo = updateScreenInfo();
     lineImages = document.getElementsByClassName(`lineImg`);
     
     for (i = 0; i < lineImages.length; i++)
@@ -363,7 +363,7 @@ function images(screenInfo)
         };
         //Set image dimensions---------------------------------------------------------------------------------
 
-        dimensions = getImgSize(lineInfo, screenInfo);
+        dimensions = getImgSize(lineInfo);
         //updates the css
         lineImages[i].style.width = `${dimensions.w}`;
         lineImages[i].style.height = `${dimensions.h}`;
@@ -371,7 +371,7 @@ function images(screenInfo)
 
         //Set image positions----------------------------------------------------------------------------------
 
-        positions = getImgPositions(lineInfo, screenInfo);
+        positions = getImgPositions(lineInfo);
 
         //update the css
         lineImages[i].style.right = `${positions.r}`;
@@ -389,35 +389,18 @@ function images(screenInfo)
 
 
 
-
-//screen info object
-var screenInfo = 
+function updateScreenInfo()
 {
-    //width and height values from :root
-    width: 100 - parseInt(getCssVar(`--sideBar-width`).slice(0, -2)),
-    height: parseInt(getCssVar(`--height`).slice(0, -2)),
-    //main view width and height in pixels
-    wPix: Math.max(document.documentElement.clientWidth, window.innerWidth || 0) * ((100 - parseInt(getCssVar(`--sideBar-width`).slice(0, -2)))/100),
-    hPix: Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * (parseInt(getCssVar(`--height`).slice(0, -2))/100)
-};
-
-function resize()
-{
-    var screenInfo = 
-    {
-        //width and height values from :root
-        width: 100 - parseInt(getCssVar(`--sideBar-width`).slice(0, -2)),
-        height: parseInt(getCssVar(`--height`).slice(0, -2)),
+    return {
         //main view width and height in pixels
-        wPix: Math.max(document.documentElement.clientWidth, window.innerWidth || 0) * ((100 - parseInt(getCssVar(`--sideBar-width`).slice(0, -2)))/100),
-        hPix: Math.max(document.documentElement.clientHeight, window.innerHeight || 0) * (parseInt(getCssVar(`--height`).slice(0, -2))/100)
+        wPix: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
+        hPix: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
     };
-    images(screenInfo);
-
 }
 
+
 //Creates the line elements and sets the rotationa and position
-lines(screenInfo);
+lines();
 
 //sets the size, position, and shape for the line images
-images(screenInfo);
+images();

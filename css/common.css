@@ -12,10 +12,10 @@
     --font-size: 1vw;
     --font-color: #cccccc;
     
-    --width: calc(100vw - var(--sideBar-width));
+    --width: calc(100vw);
     --height: 100vh;
 
-    --sideBar-width:10vw;
+    --sideBar-width: 5rem;
 }
 
 .bgImage
