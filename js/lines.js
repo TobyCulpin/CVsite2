@@ -12,10 +12,11 @@ function getCssVar(variable)
 }
 
 //returns what border a line from the center intersects given an angle
-function borderIntersect(angle, wPix, hPix)
+function borderIntersect(angle)
 {
+    screenInfo = updateScreenInfo();
     //critical angles pointing to the corners
-    let alpha = Math.atan(wPix/hPix);
+    let alpha = Math.atan(screenInfo.wPix/screenInfo.hPix);
 
     let ca0 = 0             + alpha;
     let ca1 = Math.PI       - alpha;
@@ -345,22 +346,7 @@ function images()
     for (i = 0; i < lineImages.length; i++)
     {
         //line info object
-        var lineInfo = 
-        {
-            //finds what sector the line is in
-            //top right is 0, moving clockwise      0,1,2,3
-            l1Sector: Math.floor((i * 4) / parseInt(getCssVar(`--sections`))),
-            l2Sector: Math.min(3, Math.floor(((i + 1) * 4) / parseInt(getCssVar(`--sections`)))),
-            //get angle of the 2 lines in radians
-            l1angle: ((i * 2 * Math.PI) / parseInt(getCssVar(`--sections`))),
-            l2angle: (((i + 1) * 2 * Math.PI) / parseInt(getCssVar(`--sections`))),
-            //what border the lines intersect       top border is split into 0 and 4
-            //top right is 0, moving clockwise      0,1,2,3,4
-            l1Border: borderIntersect(/*l1angle*/((i * 2 * Math.PI) / parseInt(getCssVar(`--sections`))),
-                                     screenInfo.wPix, screenInfo.hPix),
-            l2Border: borderIntersect(/*l2angle*/(((i + 1) * 2 * Math.PI) / parseInt(getCssVar(`--sections`))),
-                                     screenInfo.wPix, screenInfo.hPix)
-        };
+        let lineInfo = updateLineInfo();
         //Set image dimensions---------------------------------------------------------------------------------
 
         dimensions = getImgSize(lineInfo);
@@ -395,6 +381,23 @@ function updateScreenInfo()
         //main view width and height in pixels
         wPix: Math.max(document.documentElement.clientWidth, window.innerWidth || 0),
         hPix: Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+    };
+}
+
+function updateLineInfo()
+{
+    return {
+        //finds what sector the line is in
+        //top right is 0, moving clockwise      0,1,2,3
+        l1Sector: Math.floor((i * 4) / parseInt(getCssVar(`--sections`))),
+        l2Sector: Math.min(3, Math.floor(((i + 1) * 4) / parseInt(getCssVar(`--sections`)))),
+        //get angle of the 2 lines in radians
+        l1angle: ((i * 2 * Math.PI) / parseInt(getCssVar(`--sections`))),
+        l2angle: (((i + 1) * 2 * Math.PI) / parseInt(getCssVar(`--sections`))),
+        //what border the lines intersect       top border is split into 0 and 4
+        //top right is 0, moving clockwise      0,1,2,3,4
+        l1Border: borderIntersect(/*l1angle*/((i * 2 * Math.PI) / parseInt(getCssVar(`--sections`)))),
+        l2Border: borderIntersect(/*l2angle*/(((i + 1) * 2 * Math.PI) / parseInt(getCssVar(`--sections`))))
     };
 }
 
