@@ -1,0 +1,19 @@
+Browser Issues--------------------------------------------------------------------------
+
+Opera:
+css faults
+
+Opera GX:
+
+Firefox:
+
+Edge:
+clip-path not working
+
+IE11:
+everything is broken
+
+Brave:
+
+Chrome:
+-----------------------------------------------------------------------------------------
