@@ -18,7 +18,7 @@ function includeHTML()
       {
         if (this.readyState == 4)
         {
-        if (this.status == 200) {elmnt.innerHTML = this.responseText; alert(elmnt);}
+        if (this.status == 200) {elmnt.innerHTML = this.responseText; /*alert(elmnt)*/;}
           if (this.status == 404) {elmnt.innerHTML = "Page not found."; /*alert(2);*/}
 
           /* Remove the attribute, and call this function once more: */
